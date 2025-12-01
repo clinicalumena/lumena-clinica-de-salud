@@ -7,21 +7,21 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/$PROJECT_ID/lumena-clinica:$COMMIT_SHA'
+      - 'gcr.io/$PROJECT_ID/lumena-clinica-de-salud:$COMMIT_SHA'
       - '-t'
-      - 'gcr.io/$PROJECT_ID/lumena-clinica:latest'
+      - 'gcr.io/$PROJECT_ID/lumena-clinica-de-salud:latest'
       - '.'
 
   # Push the Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'gcr.io/$PROJECT_ID/lumena-clinica:$COMMIT_SHA'
+      - 'gcr.io/$PROJECT_ID/lumena-clinica-de-salud:$COMMIT_SHA'
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'gcr.io/$PROJECT_ID/lumena-clinica:latest'
+      - 'gcr.io/$PROJECT_ID/lumena-clinica-de-salud:latest'
 
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -29,9 +29,9 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'lumena-clinica'
+      - 'lumena-clinica-de-salud'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/lumena-clinica:$COMMIT_SHA'
+      - 'gcr.io/$PROJECT_ID/lumena-clinica-de-salud:$COMMIT_SHA'
       - '--region'
       - 'us-central1'  # Change to your preferred region
       - '--platform'
@@ -44,8 +44,8 @@ steps:
       # - 'GEMINI_API_KEY=GEMINI_API_KEY:latest'
 
 images:
-  - 'gcr.io/$PROJECT_ID/lumena-clinica:$COMMIT_SHA'
-  - 'gcr.io/$PROJECT_ID/lumena-clinica:latest'
+  - 'gcr.io/$PROJECT_ID/lumena-clinica-de-salud:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/lumena-clinica-de-salud:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
