@@ -7,8 +7,8 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import Accordion from '../components/ui/Accordion';
 import QuickAppointmentForm from '../components/QuickAppointmentForm';
-import { 
-    IconCheck, IconStar, IconShieldCheck, IconClock, IconMoodSmile, IconHeartHandshake 
+import {
+    IconCheck, IconStar, IconShieldCheck, IconClock, IconMoodSmile, IconHeartHandshake
 } from '@tabler/icons-react';
 import SEO from '../components/SEO';
 
@@ -104,7 +104,7 @@ const SpecificServicePage: React.FC = () => {
 
     return (
         <div className="container mx-auto px-4 py-8 md:py-12">
-            <SEO 
+            <SEO
                 title={`${service.title} - ${category.name}`}
                 description={service.description}
                 keywords={[service.title, category.name, "tratamiento", "precio", "el ejido"]}
@@ -126,7 +126,7 @@ const SpecificServicePage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 {/* Main Content */}
                 <main className="lg:col-span-2 space-y-10">
-                    
+
                     <header>
                         <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">{service.title}</h1>
                         <p className="text-xl text-muted-foreground">{service.description}</p>
@@ -140,19 +140,19 @@ const SpecificServicePage: React.FC = () => {
                         <h3 className="text-2xl font-bold mb-6">Galería</h3>
                         <div className="grid grid-cols-2 gap-4">
                             {galleryImages.map((src, idx) => (
-                                <img 
-                                    key={idx} 
-                                    src={src} 
-                                    alt={`${service.title} ${idx + 1}`} 
+                                <img
+                                    key={idx}
+                                    src={src}
+                                    alt={`${service.title} ${idx + 1}`}
                                     className="rounded-xl w-full h-48 object-cover hover:opacity-90 transition-opacity"
                                 />
                             ))}
                         </div>
                     </section>
-                    
+
                     {/* Mobile Quick Appointment Form (Below Gallery) */}
                     <div className="lg:hidden mt-8">
-                         <QuickAppointmentForm defaultService={service.title} idPrefix="mobile-quick" />
+                        <QuickAppointmentForm defaultService={service.title} serviceSlug={service.slug} idPrefix="mobile-quick" />
                     </div>
 
                     {/* Benefits */}
@@ -166,9 +166,9 @@ const SpecificServicePage: React.FC = () => {
                         <h3 className="text-2xl font-bold mb-6">Información Detallada</h3>
                         <Accordion items={accordionItems} />
                     </section>
-                    
-                     {/* FAQs */}
-                     <section>
+
+                    {/* FAQs */}
+                    <section>
                         <h3 className="text-2xl font-bold mb-6">Preguntas Frecuentes</h3>
                         <Accordion items={faqItems} />
                     </section>
@@ -180,9 +180,9 @@ const SpecificServicePage: React.FC = () => {
                     <div className="sticky top-28 space-y-6">
                         {/* Desktop Quick Appointment Form (Hidden on Mobile) */}
                         <div className="hidden lg:block">
-                            <QuickAppointmentForm defaultService={service.title} idPrefix="desktop-quick" />
+                            <QuickAppointmentForm defaultService={service.title} serviceSlug={service.slug} idPrefix="desktop-quick" />
                         </div>
-                        
+
                         {/* Mini Doctor Profile Card */}
                         <Link to={`/especialistas/${doctor.slug}`} className="block group">
                             <Card className="p-4 flex items-center gap-4 bg-muted/30 transition-colors group-hover:bg-muted/50 group-hover:border-primary/30">

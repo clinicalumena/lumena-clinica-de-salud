@@ -42,11 +42,11 @@ export interface Post {
   content: string;
   authorSlug: string; // Changed from author: string
   date: string;
-  imageUrl:string;
+  imageUrl: string;
   category: string;
   // Optional properties that will be added dynamically
   author?: Author;
-  readingTime?: number; 
+  readingTime?: number;
 }
 
 
@@ -83,4 +83,16 @@ export interface ServiceCategoryDetail {
   name: string;
   description: string;
   services: SpecificService[];
+}
+
+export interface Appointment {
+  id?: string;
+  serviceSlug: string;
+  serviceName: string;
+  date: any; // Using any for now to avoid Timestamp import issues in types file, will be handled in service
+  status: 'pending' | 'confirmed' | 'cancelled';
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  createdAt: any;
 }
