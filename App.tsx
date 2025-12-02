@@ -58,6 +58,7 @@ const PageLayout: React.FC = () => {
 
 
 const App: React.FC = () => {
+  console.log('Rendering App component');
   return (
     <BrowserRouter>
       <ScrollToTop />

@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp, FirebaseApp } from "firebase/app";
+import { initializeApp, FirebaseApp, getApps, getApp } from "firebase/app";
 import { getAnalytics, Analytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
@@ -15,12 +15,24 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app: FirebaseApp = initializeApp(firebaseConfig);
-
-// Initialize Analytics only in browser environment
+let app: FirebaseApp;
 let analytics: Analytics | null = null;
-if (typeof window !== 'undefined') {
-  analytics = getAnalytics(app);
+
+try {
+  if (getApps().length === 0) {
+    app = initializeApp(firebaseConfig);
+    console.log("Firebase initialized successfully");
+  } else {
+    app = getApp();
+    console.log("Firebase app already initialized");
+  }
+
+  // Initialize Analytics only in browser environment
+  if (typeof window !== 'undefined') {
+    analytics = getAnalytics(app);
+  }
+} catch (error) {
+  console.error("Error initializing Firebase:", error);
 }
 
 export { app, analytics };
